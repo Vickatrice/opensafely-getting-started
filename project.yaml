@@ -1,6 +1,7 @@
-version: '3.0'
 
-# Ignore this`expectation` block. It is required but not used, and will be removed in future versions.
+version: "3.0"
+
+# Ignore this `expectations` block. It is required but not used, and will be removed in future versions.
 expectations:
   population_size: 1000
 
@@ -10,3 +11,10 @@ actions:
     outputs:
       highly_sensitive:
         dataset: output/dataset.csv.gz
+
+  generate_report:
+    run: python:v2 python analysis/report.py
+    needs: [generate_dataset]
+    outputs:
+      moderately_sensitive:
+        chart: output/report.png
